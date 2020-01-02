@@ -27,7 +27,7 @@ public class ManufactureDataModel {
 
                     @Override
                     public void onFailure(Call<ManufactureModel> call, Throwable t) {
-                        Log.d("123", "moonFailure: "+t);
+                        Log.d("123", "moonFailurer: "+t);
                     }
 
                 });
