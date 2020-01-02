@@ -7,12 +7,18 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.ui.Shareperference.PreferencesHelperImp;
+
+import static com.example.ui.LoginActivity.preferencesHelperImp;
 
 
 /**
@@ -28,11 +34,12 @@ public class ProduceScheduleFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+
     private TextView schedule_search,report_work;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
+    private TextView name;
     private OnFragmentInteractionListener mListener;
 
     public ProduceScheduleFragment() {
@@ -70,6 +77,7 @@ public class ProduceScheduleFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        preferencesHelperImp = new PreferencesHelperImp(getContext());
         View view= inflater.inflate(R.layout.fragment_produce_schedule, container, false);
         schedule_search=view.findViewById(R.id.schedule_search);
         schedule_search.setOnClickListener(new View.OnClickListener() {

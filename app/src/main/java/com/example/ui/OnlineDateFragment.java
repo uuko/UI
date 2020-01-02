@@ -7,9 +7,12 @@ import android.os.Bundle;
 
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,9 +21,15 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
+import android.widget.SearchView;
+
+import com.example.ui.datamodel.CustomDataModel;
+import com.example.ui.viewmodel.SearchViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.example.ui.LoginActivity.preferencesHelperImp;
 
 
 /**
@@ -36,7 +45,8 @@ public class OnlineDateFragment extends DialogFragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
+    private CustomDataModel customDataModel;
+    private SearchViewModel searchViewModel;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -78,22 +88,30 @@ public class OnlineDateFragment extends DialogFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view=inflater.inflate(R.layout.fragment_online_date, container, false);
         online_date_recycleview=view.findViewById(R.id.fragment_online_date_recycleview);
+        // Inflate the layout for this fragment
+        String custom_name = getArguments().getString("edttext");
+        String token =preferencesHelperImp.getStringData();
+        String mo_id=getArguments().getString("edttext");
+        Log.d("123", "strtextw: "+custom_name+token);
+
 
         LinearLayoutManager layoutManager=new LinearLayoutManager(view.getContext());
         layoutManager.setOrientation(RecyclerView.VERTICAL);
         online_date_recycleview.setLayoutManager(layoutManager);
 
-        List<String> list=new ArrayList<>();
-        list.add("456");
-        list.add("456");
-        list.add("789");
-
-        Online_Date_Adapter online_date_adapter=new Online_Date_Adapter(list);
-        online_date_recycleview.setAdapter(online_date_adapter);
-        online_date_adapter.notifyDataSetChanged();
+        searchViewModel= ViewModelProviders.of(this).get(SearchViewModel.class);
+       // searchViewModel.getCustomNames(custom_name,token);
+        searchViewModel.getManufactureId(mo_id,token);
+//        List<String> list=new ArrayList<>();
+//        list.add("456");
+//        list.add("456");
+//        list.add("789");
+//
+//        Online_Date_Adapter online_date_adapter=new Online_Date_Adapter(list);
+//        online_date_recycleview.setAdapter(online_date_adapter);
+//        online_date_adapter.notifyDataSetChanged();
         return view;
     }
 

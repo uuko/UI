@@ -3,6 +3,7 @@ package com.example.ui.datamodel;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.example.ui.Shareperference.PreferencesHelperImp;
 import com.example.ui.model.LoginModel;
 import com.example.ui.model.LoginTokenModel;
 import com.example.ui.service.LoginService;
@@ -14,7 +15,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class LoginDataModel {
+import static com.example.ui.LoginActivity.preferencesHelperImp;
+
+public class LoginDataModel  {
 
     private LoginService loginService=
             RetrofitManager.getInstance().getLoginService();
@@ -25,6 +28,8 @@ public class LoginDataModel {
                     @Override
                     public void onResponse(Call<LoginTokenModel> call, Response<LoginTokenModel> response) {
                         callback.onDataReady(response.body().getToken());
+                        preferencesHelperImp.setStringData(response.body().getToken());
+                        Log.d("123", "onResponse: "+preferencesHelperImp.getStringData());
                     }
 
                     @Override

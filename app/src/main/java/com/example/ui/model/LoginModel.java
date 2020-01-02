@@ -2,24 +2,25 @@ package com.example.ui.model;
 
 public class LoginModel {
 
-    public LoginModel(int id, String name, String account, int role_id, Object factory_id, String created_at, String updated_at) {
+
+    public LoginModel(int id, String name, String account, int role_id, String created_at, String updated_at) {
         this.id = id;
         this.name = name;
         this.account = account;
         this.role_id = role_id;
-        this.factory_id = factory_id;
         this.created_at = created_at;
         this.updated_at = updated_at;
     }
+
     /**
      * id : 1
      * name : 張秋龍
      * account : e1001
      * role_id : 1
-     * factory_id : null
      * created_at : 2019-05-10 15:18:16
      * updated_at : 2019-05-10 15:18:16
      */
+
 
 
 
@@ -27,7 +28,6 @@ public class LoginModel {
     private String name;
     private String account;
     private int role_id;
-    private Object factory_id;
     private String created_at;
     private String updated_at;
 
@@ -61,14 +61,6 @@ public class LoginModel {
 
     public void setRole_id(int role_id) {
         this.role_id = role_id;
-    }
-
-    public Object getFactory_id() {
-        return factory_id;
-    }
-
-    public void setFactory_id(Object factory_id) {
-        this.factory_id = factory_id;
     }
 
     public String getCreated_at() {
