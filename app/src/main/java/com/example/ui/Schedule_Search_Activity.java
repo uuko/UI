@@ -15,13 +15,14 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.ui.datamodel.CustomDataModel;
+import com.example.ui.datamodel.ManufactureDataModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Schedule_Search_Activity extends AppCompatActivity {
     private Spinner made_spinner;
-    private Button online_date,checked;
+    private Button online_date,checked,manufacture;
     private EditText custom_name,mo_id;
     private   String custom_name_val,mo_id_val;
     private CustomDataModel customDataModel;
@@ -42,15 +43,14 @@ public class Schedule_Search_Activity extends AppCompatActivity {
         online_date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                custom_name=findViewById(R.id.custom_name);
-//                custom_name_val=custom_name.getText().toString();
-                mo_id=findViewById(R.id.mo_id);
-                mo_id_val=mo_id.getText().toString();
+                custom_name=findViewById(R.id.custom_name);
+                custom_name_val=custom_name.getText().toString();
+
                 OnlineDateFragment onlineDateFragment=new OnlineDateFragment();
                 Bundle bundle = new Bundle();
-//                bundle.putString("edttext", custom_name_val);
-            // set Fragmentclass Arguments
-                bundle.putString("edttext", mo_id_val);
+                bundle.putString("edttext", custom_name_val);
+
+
                 onlineDateFragment.setArguments(bundle);
                 onlineDateFragment.show(getSupportFragmentManager(),"online_date");
             }
@@ -66,6 +66,22 @@ public class Schedule_Search_Activity extends AppCompatActivity {
 
                 Intent report_work=new Intent(Schedule_Search_Activity.this,Report_Work_Activity.class);
                 startActivity(report_work);
+            }
+        });
+
+
+        manufacture=findViewById(R.id.manufacture);
+        manufacture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mo_id=findViewById(R.id.mo_id);
+                mo_id_val=mo_id.getText().toString();
+                Bundle bundle = new Bundle();
+                bundle.putString("mo_id", mo_id_val);
+
+                ManufactureFragment manufactureFragment=new ManufactureFragment();
+                manufactureFragment.setArguments(bundle);
+                manufactureFragment.show(getSupportFragmentManager(),"manufacture");
             }
         });
     }
