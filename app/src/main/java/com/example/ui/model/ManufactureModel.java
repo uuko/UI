@@ -1,14 +1,14 @@
 package com.example.ui.model;
 
 public class ManufactureModel {
-
     public ManufactureModel(String mo_id) {
         this.mo_id = mo_id;
     }
 
     /**
-     * mo_id : 1MO1901190001
+     * mo_id : 1MO1911020034
      */
+
 
 
     private String mo_id;
@@ -20,4 +20,13 @@ public class ManufactureModel {
     public void setMo_id(String mo_id) {
         this.mo_id = mo_id;
     }
+
+
+    /**
+     * mo_id : 1MO1901190001
+     */
+
+
+
+
 }
